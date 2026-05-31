@@ -71,9 +71,21 @@ export function SearchBar({ onCitySelect }: SearchBarProps) {
       {showSuggestions && (
         <>
           {isLoading && !cities?.length && (
-            <div className="absolute top-full left-0 right-0 mt-1 rounded-xl border border-[#252525] bg-[#0e0e0e] px-5 py-4 text-[#a7a7a7] text-sm shadow-xl z-50">
-              Ricerca in corso...
-            </div>
+            <ul
+              aria-label="Ricerca in corso"
+              aria-busy="true"
+              className="absolute top-full left-0 right-0 mt-1 rounded-xl border border-[#252525] bg-[#0e0e0e] overflow-hidden shadow-xl z-50"
+            >
+              {Array.from({ length: 4 }).map((_, i) => (
+                <li key={i}>
+                  <div className="px-5 py-3">
+                    <div className="h-3.5 w-32 rounded bg-[#1a1a1a] animate-pulse mb-2" />
+                    <div className="h-2.5 w-48 rounded bg-[#1a1a1a] animate-pulse" />
+                  </div>
+                  {i < 3 && <div className="h-px bg-[#252525]" />}
+                </li>
+              ))}
+            </ul>
           )}
           {!isLoading && isError && (
             <div className="absolute top-full left-0 right-0 mt-1 rounded-xl border border-[#252525] bg-[#0e0e0e] px-5 py-4 text-[#a7a7a7] text-sm shadow-xl z-50">
