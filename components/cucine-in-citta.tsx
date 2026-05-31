@@ -23,14 +23,13 @@ function SiteHeader() {
 
 function CuisinesSkeleton() {
   return (
-    <div
-      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
-      aria-label="Caricamento cucine in corso"
-      aria-busy="true"
-    >
-      {Array.from({ length: 8 }).map((_, i) => (
-        <CuisineCardSkeleton key={i} />
-      ))}
+    <div aria-label="Caricamento cucine in corso" aria-busy="true">
+      <div className="h-3 w-36 rounded bg-[#1a1a1a] animate-pulse mb-5" />
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <CuisineCardSkeleton key={i} />
+        ))}
+      </div>
     </div>
   )
 }
