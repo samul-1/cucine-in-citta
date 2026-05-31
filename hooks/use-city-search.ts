@@ -7,7 +7,7 @@ export function useCitySearch(term: string) {
 
   const query = useQuery({
     queryKey: ['cities', debouncedTerm],
-    queryFn: () => fetchCities(debouncedTerm),
+    queryFn: ({ signal }) => fetchCities(debouncedTerm, signal),
     enabled: debouncedTerm.trim().length >= 2,
     staleTime: 5 * 60 * 1000,
   })

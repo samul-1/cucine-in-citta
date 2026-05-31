@@ -9,7 +9,7 @@ interface Coords {
 export function useCuisines(coords: Coords | null) {
   return useQuery({
     queryKey: ['cuisines', coords?.lat, coords?.lng],
-    queryFn: () => fetchCuisines(coords!.lat, coords!.lng),
+    queryFn: ({ signal }) => fetchCuisines(coords!.lat, coords!.lng, signal),
     enabled: coords !== null,
     staleTime: 10 * 60 * 1000,
   })

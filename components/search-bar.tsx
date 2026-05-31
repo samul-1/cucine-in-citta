@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-import { Search, Loader2 } from 'lucide-react'
+import { Search, Loader2, RefreshCw } from 'lucide-react'
 import { useCitySearch } from '@/hooks/use-city-search'
 import { SuggestionsList } from './suggestions-list'
 import type { City } from '@/lib/schemas'
@@ -15,7 +15,7 @@ export function SearchBar({ onCitySelect }: SearchBarProps) {
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const { data: cities, isFetching, isTyping, isError } = useCitySearch(term)
+  const { data: cities, isFetching, isTyping, isError, refetch } = useCitySearch(term)
 
   const showSuggestions = open && term.length >= 2
 
@@ -88,8 +88,16 @@ export function SearchBar({ onCitySelect }: SearchBarProps) {
             </ul>
           )}
           {!isLoading && isError && (
-            <div className="absolute top-full left-0 right-0 mt-1 rounded-xl border border-[#252525] bg-[#0e0e0e] px-5 py-4 text-[#a7a7a7] text-sm shadow-xl z-50">
-              Errore nella ricerca. Riprova.
+            <div className="absolute top-full left-0 right-0 mt-1 rounded-xl border border-[#252525] bg-[#0e0e0e] px-5 py-4 shadow-xl z-50 flex items-center justify-between gap-3">
+              <span className="text-[#a7a7a7] text-sm">Errore nella ricerca.</span>
+              <button
+                type="button"
+                onClick={() => refetch()}
+                className="flex items-center gap-1.5 text-sm text-white border border-[#252525] rounded-lg px-3 py-1.5 hover:border-[#3e4142] transition-colors shrink-0"
+              >
+                <RefreshCw className="w-3.5 h-3.5" aria-hidden />
+                Riprova
+              </button>
             </div>
           )}
           {!isLoading && !isError && cities && cities.length === 0 && (
