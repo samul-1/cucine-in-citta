@@ -78,8 +78,8 @@ export function SearchBar({ onCitySelect }: SearchBarProps) {
             >
               {Array.from({ length: 4 }).map((_, i) => (
                 <li key={i}>
-                  <div className="px-5 py-3">
-                    <div className="h-3.5 w-32 rounded bg-[#1a1a1a] animate-pulse mb-2" />
+                  <div className="px-5 py-4">
+                    <div className="h-3.5 w-32 rounded bg-[#1a1a1a] animate-pulse mb-4" />
                     <div className="h-2.5 w-48 rounded bg-[#1a1a1a] animate-pulse" />
                   </div>
                   {i < 3 && <div className="h-px bg-[#252525]" />}
