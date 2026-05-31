@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { CuisineCard } from './cuisine-card'
 import type { Cuisine } from '@/lib/schemas'
 
@@ -9,6 +10,12 @@ interface CuisineGridProps {
 }
 
 export function CuisineGrid({ cuisines, count }: CuisineGridProps) {
+  const [selectedId, setSelectedId] = useState<number | null>(null)
+
+  function handleSelect(id: number) {
+    setSelectedId((prev) => (prev === id ? null : id))
+  }
+
   return (
     <div>
       <p className="text-xs font-semibold tracking-widest text-[#a7a7a7] mb-5 uppercase">
@@ -16,7 +23,12 @@ export function CuisineGrid({ cuisines, count }: CuisineGridProps) {
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {cuisines.map((cuisine) => (
-          <CuisineCard key={cuisine.id} cuisine={cuisine} />
+          <CuisineCard
+            key={cuisine.id}
+            cuisine={cuisine}
+            isSelected={selectedId === cuisine.id}
+            onSelect={handleSelect}
+          />
         ))}
       </div>
     </div>
