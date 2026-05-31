@@ -17,6 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it" className={inter.variable}>
+      <head>
+        <link rel="preload" href="/italy.svg" as="image" type="image/svg+xml" />
+      </head>
       <body suppressHydrationWarning className="min-h-screen bg-background text-foreground antialiased">
         <Providers>{children}</Providers>
       </body>
