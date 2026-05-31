@@ -2,6 +2,15 @@
 
 import type { Cuisine } from '@/lib/schemas'
 
+export function CuisineCardSkeleton() {
+  return (
+    <div className="flex flex-col items-center gap-3 rounded-xl border border-[#252525] bg-[#0e0e0e] p-5">
+      <div className="w-20 h-20 rounded-full bg-[#1a1a1a] animate-pulse shrink-0" />
+      <div className="h-3.5 w-16 rounded bg-[#1a1a1a] animate-pulse" />
+    </div>
+  )
+}
+
 interface CuisineCardProps {
   cuisine: Cuisine
   isSelected: boolean

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { ArrowLeft, RefreshCw } from 'lucide-react'
 import { SearchBar } from './search-bar'
 import { CuisineGrid } from './cuisine-grid'
+import { CuisineCardSkeleton } from './cuisine-card'
 import { ItalyMap } from './italy-map'
 import { useCuisines } from '@/hooks/use-cuisines'
 import type { City } from '@/lib/schemas'
@@ -28,10 +29,7 @@ function CuisinesSkeleton() {
       aria-busy="true"
     >
       {Array.from({ length: 8 }).map((_, i) => (
-        <div
-          key={i}
-          className="h-[148px] rounded-xl bg-[#0e0e0e] border border-[#252525] animate-pulse"
-        />
+        <CuisineCardSkeleton key={i} />
       ))}
     </div>
   )
